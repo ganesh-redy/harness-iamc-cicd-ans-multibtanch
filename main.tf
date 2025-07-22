@@ -4,17 +4,16 @@ provider "google" {
   region      = var.region
   zone        = var.zone
 }
-locals {
-  vm_names_list = split(",", var.vm_names)
-}
+
 resource "google_compute_instance" "vms" {
-  count = length(local.vm_names_list)
-name  = "${local.vm_names_list[count.index]}-${var.number}"
+  count        = length(var.vm_names)
+  name         = var.vm_names[count.index]
   machine_type = "e2-medium"
   zone         = var.zone
 
   labels = {
-    lap = var.vm_names[count.index]
+    env = "prod"
+    app = var.vm_names[count.index]
   }
 
   boot_disk {
@@ -24,8 +23,7 @@ name  = "${local.vm_names_list[count.index]}-${var.number}"
   }
 
   network_interface {
-    network       = "default"
+    network = "default"
     access_config {}
   }
-
 }
