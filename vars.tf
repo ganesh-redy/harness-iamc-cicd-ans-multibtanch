@@ -3,15 +3,11 @@ variable "vm_names" {
   type        = list(string)
 }
 
-variable "number" {
-  description = "Unique number suffix"
-  type        = string
-}
 
 variable "project" {
   description = "GCP project ID"
   type        = string
-  default     = ""  # Replace with your real project ID or pass via -var
+  default     = "sam-465905"  # Replace with your real project ID or pass via -var
 }
 
 variable "region" {
