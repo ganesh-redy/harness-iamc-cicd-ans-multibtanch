@@ -12,8 +12,8 @@ resource "google_compute_instance" "vms" {
   zone         = var.zone
 
   labels = {
-    env = "prod"
-    app = var.vm_names[count.index]
+    
+    label1 = var.vm_names[count.index]
   }
 
   boot_disk {
