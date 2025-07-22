@@ -4,10 +4,12 @@ provider "google" {
   region      = var.region
   zone        = var.zone
 }
-
+locals {
+  vm_names_list = split(",", var.vm_names)
+}
 resource "google_compute_instance" "vms" {
-  count        = length(var.vm_names)
-  name         = "${var.vm_names[count.index]}"
+  count = length(local.vm_names_list)
+name  = "${local.vm_names_list[count.index]}-${var.number}"
   machine_type = "e2-medium"
   zone         = var.zone
 
