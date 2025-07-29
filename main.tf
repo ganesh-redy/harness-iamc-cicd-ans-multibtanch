@@ -1,19 +1,23 @@
 provider "google" {
-  
-  project     = var.project
-  region      = var.region
-  zone        = var.zone
+  project = var.project
+  region  = var.region
+  zone    = var.zone
+}
+
+
+
+locals {
+  vm_list = split(",", var.vm_names)  # Correctly splits into ["sam", "test1"]
 }
 
 resource "google_compute_instance" "vms" {
-  count        = length(var.vm_names)
-  name         = var.vm_names[count.index]
+  count        = length(local.vm_list)  
+  name         = local.vm_list[count.index]  
   machine_type = "e2-medium"
   zone         = var.zone
 
   labels = {
-    
-    label1 = var.vm_names[count.index]
+    label1 = local.vm_list[count.index]
   }
 
   boot_disk {
