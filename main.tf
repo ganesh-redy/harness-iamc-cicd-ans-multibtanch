@@ -1,5 +1,5 @@
 provider "google" {
-  credentials = file("/tmp/gcp.json")
+  
   project     = var.project
   region      = var.region
   zone        = var.zone
