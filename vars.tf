@@ -1,6 +1,6 @@
 variable "vm_names" {
   description = "List of VM names"
-  default = "<+pipeline.stages.fetch_branch.spec.execution.steps.fetch_branch1.steps.fetch.output.outputVariables.branch_list>"
+  default = "<+pipeline.stages.fetch_branch.variables.run_branch_name>"
 }
 
 
