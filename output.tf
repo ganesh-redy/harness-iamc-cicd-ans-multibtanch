@@ -1,7 +1,7 @@
-output "vm_names" {
-  value = [for i in google_compute_instance.vms : i.name]
+output "debug_vm_list" {
+  value = local.vm_list
 }
 
-output "vm_labels" {
-  value = [for i in google_compute_instance.vms : i.labels]
+output "debug_count" {
+  value = length(local.vm_list)
 }
