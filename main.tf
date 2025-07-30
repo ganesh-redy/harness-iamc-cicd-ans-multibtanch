@@ -11,13 +11,13 @@ locals {
 }
 
 resource "google_compute_instance" "vms" {
-  count        = length(local.vm_list)  
-  name         = local.vm_list[count.index]  
+  for_each =  toset(local.vm_list) 
+  name         = each.key
   machine_type = "e2-medium"
   zone         = var.zone
 
   labels = {
-    label1 = local.vm_list[count.index]
+    label1 = each.key 
   }
 
   boot_disk {
